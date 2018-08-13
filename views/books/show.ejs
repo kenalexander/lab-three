@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+  
+<section>
+
+  <div class="row">
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          
+          <h5 class="card-title">
+            <%= book.bookName %>
+          </h5>
+
+          <p>
+            Release Year: <%= book.releaseYear %>
+          </p>
+          
+          <p>
+            Author: <%= book.author %>
+          </p>
+
+          <p>
+            <% if (book.description != null) { %>
+              <p>Description: <%= book.description %></p>
+            <% } %>
+          </p>
+          <div class="actions">
+
+              <a href="/books" class="btn btn-primary">Back</a>
+              
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+</section>
+
+<% include ../partials/footer %>

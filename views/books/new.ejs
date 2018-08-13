@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<section>
+  <form action="/books/" method="post">
+    <fieldset>
+      <legend>Book Information</legend>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="book_name" name="bookName" placeholder="The Picture of Dorian Gray" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Release Year</label>
+        <input type="number" class="form-control" id="book_name" name="releaseYear" placeholder="1890" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Author</label>
+        <input type="text" class="form-control" id="book_name" name="author" placeholder="Oscar Wilde" required>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Description</label>
+        <input type="text" class="form-control" id="book_name" name="description" placeholder="Optional ie. Good Novel">
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Create Book</button>
+    </div>
+  </form>
+</section>
+
+<% include ../partials/footer %>

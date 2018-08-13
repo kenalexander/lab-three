@@ -1,17 +1,17 @@
-var Drink = require( '../models/drink' )
+var Book = require( '../models/book' )
 
 /* VIEWS */
 // Index (View)
 exports.index = function( req, res, next ) {
 
   locals = {
-    title: 'Behind the Bar'
+    title: 'On the Shelf'
   }
 
-  Drink.find().then(function (drinks) {
-    locals.drinks = drinks
+  Book.find().then(function (books) {
+    locals.books = books
 
-    res.render('drinks/index', locals)
+    res.render('books/index', locals)
   })
 }
 
@@ -19,23 +19,23 @@ exports.index = function( req, res, next ) {
 exports.new = function ( req, res ) {
 
   locals = {
-    title: 'Add New Drink to Menu'
+    title: 'Add New Book to Menu'
   }
 
-  res.render('drinks/new', locals);
+  res.render('books/new', locals);
 }
 
 // Create (Action)
 exports.create = function ( req, res, next ) {
 
-  Drink.create({
-    drinkName: req.body.drinkName,
-    volume: req.body.volume,
-    alcoholLimit: req.body.alcoholLimit,
+  Book.create({
+    bookName: req.body.bookName,
+    releaseYear: req.body.releaseYear,
+    author: req.body.author,
     description: req.body.description
   })
   .then(function () {
-    res.redirect('/drinks')
+    res.redirect('/books')
   })
   .catch(function (err) {
     next(err)
@@ -47,15 +47,15 @@ exports.create = function ( req, res, next ) {
 exports.show = function ( req, res, next ) { 
 
   let locals = {
-    title: 'Behind the Bar'
+    title: 'On the Shelf'
   }
 
-  Drink.findById({
+  Book.findById({
     _id: req.params.id
   })
-  .then( function ( drink ) {
-    locals.drink = drink
-    res.render( 'drinks/show', locals )
+  .then( function ( book ) {
+    locals.book = book
+    res.render( 'books/show', locals )
   })
   .catch( function ( err ) {
     next( err )
@@ -66,18 +66,18 @@ exports.show = function ( req, res, next ) {
 exports.edit = function ( req, res ) { 
   
   locals = {
-    title: 'Edit Drink'
+    title: 'Edit Book'
   };
 
-  Drink.findById({
+  Book.findById({
     _id: req.params.id
   })
-  .then( function ( drink ) {
+  .then( function ( book ) {
     // add the products to our locals
-    locals.drink = drink;
+    locals.book = book;
 
     // render our view
-    res.render( 'drinks/edit', locals )
+    res.render( 'books/edit', locals )
   })
   .catch( function ( err ) {
     next( err )
@@ -87,17 +87,17 @@ exports.edit = function ( req, res ) {
 // Update (Action)
 exports.update = function ( req, res, next ) {
 
- Drink.findById( req.params.id )
-  .then(function ( drink ) {
+ Book.findById( req.params.id )
+  .then(function ( book ) {
 
-    drink.drinkName = req.body.drinkName
-    drink.volume = req.body.volume
-    drink.alcoholLimit = req.body.alcoholLimit
-    drink.description = req.body.description
+    book.bookName = req.body.bookName
+    book.releaseYear = req.body.releaseYear
+    book.author = req.body.author
+    book.description = req.body.description
 
-    drink.save()
+    book.save()
     .then(  function () {
-      res.redirect( '/drinks' )
+      res.redirect( '/books' )
     })
     .catch( function ( err ) {
       next( err )
@@ -110,11 +110,11 @@ exports.update = function ( req, res, next ) {
 
 // Delete (Action)
 exports.delete = function ( req, res, next) { 
-  Drink.remove({
+  Book.remove({
     _id: req.body.id
   })
   .then( function () {
-    res.redirect( '/drinks' )
+    res.redirect( '/books' )
   })
   .catch( function ( err ) {
     next( err )

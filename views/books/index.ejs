@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+  
+<section>
+  
+
+  <div class="row">
+
+    <% for ( let book of books ) { %>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= book.bookName %></h5>
+            <p>Release Year: <%= book.releaseYear %></p>
+            <p>Author: <%= book.author %></p>
+            <% if (book.description != null) { %>
+              <p>Description: <%= book.description %></p>
+            <% } %>
+            <div class="actions">
+
+              <a href="/books/<%= book.id %>" class="btn btn-primary">Show</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+  </div>
+</section>
+
+<% include ../partials/footer %>
